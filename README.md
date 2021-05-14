@@ -1,0 +1,1 @@
+# lectia22_js_callback_value
