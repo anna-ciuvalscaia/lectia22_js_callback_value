@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Callback</title>
+</head>
+<body>
+   <div id="content"></div>
+   <div id="total"></div>
+
+    <script>
+        const payments = [
+  { amount: 100.00, currency: "USD" },
+  { amount:  50.00, currency: "EUR" },
+  { amount:  10.00, currency: "USD" },
+  { amount:  25.00, currency: "EUR" },
+  { amount:   5.00, currency: "USD" },
+]
+
+let shValue = prompt(`INTRODUCETI valuta "USD" sau "EUR"`);
+
+// Array.filter
+let usdFilter = payments.filter(function(usdF) {
+return usdF.currency == shValue.toUpperCase()
+});
+
+// Array.forEach
+usdFilter.forEach( payments => console.log(payments));
+
+// Array.reduce
+let n = 0;
+let sum = usdFilter.reduce(function(a, b){
+ return a + b.amount;
+}, n);
+console.log(sum)
+
+function showValue(rootId) {
+    
+    for(let i= 0; i < usdFilter.length; i++){
+       rootId.innerHTML += `
+       <li>${usdFilter[i].amount} ${usdFilter[i].currency}</li>
+       `   
+    }
+   
+}
+
+function totalValue (rootId){
+    rootId.innerHTML = `
+    <p>Suma totala din toate transele in valuta "${shValue}" este de <b>${sum}</b></p>
+  ` 
+}
+
+showValue (content)
+
+totalValue ( total)
+
+    </script>
+</body>
+</html>
